@@ -16,10 +16,10 @@ server.get("/echo", (req, res) => {
 server.use(jsonServer.bodyParser);
 server.use((req, res, next) => {
     if (["POST", "PUT", "PATCH"].includes(req.method)) {
-        if (new Date(req.body.publishedDate).getTime() < new Date().getTime()) {
+        if (new Date(req.body.publishDate).getTime() < new Date().getTime()) {
             return res.status(422).send({
                 error: {
-                    publishedDate:
+                    publishDate:
                         "Không được publish vào thời điểm trong quá khứ",
                 },
             });
